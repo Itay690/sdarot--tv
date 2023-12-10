@@ -10,8 +10,7 @@ export const Navbar = () => {
         Hello
       </Link>
       <button className="rounded-md border bg-slate-300 p-2 hover:bg-slate-500">
-        Sig
-        n In
+        Sign In
       </button>
       <button className="rounded-md border bg-slate-300 p-2 hover:bg-slate-500">
         Sign Up
