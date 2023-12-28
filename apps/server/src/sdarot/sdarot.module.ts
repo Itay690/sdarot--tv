@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { PrismaModule } from '../prisma/prisma.module';
 import { SdarotController } from './sdarot.controller';
 import { SdarotService } from './sdarot.service';
 
 @Module({
-  imports: [],
+  imports: [PrismaModule],
   controllers: [SdarotController],
   providers: [SdarotService],
   exports: [],
