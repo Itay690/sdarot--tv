@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { sdarotApi } from './services/sdarot.api';
+import { serverApi } from './services/server.api';
 
 export const store = configureStore({
-  reducer: { [sdarotApi.reducerPath]: sdarotApi.reducer },
+  reducer: { [serverApi.reducerPath]: serverApi.reducer },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(sdarotApi.middleware),
+    getDefaultMiddleware().concat(serverApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
