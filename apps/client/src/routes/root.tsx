@@ -4,7 +4,7 @@ import { useGetSdarotQuery } from '../store/services/sdarot.api';
 
 export const Root: React.FC = () => {
   const { data: sdarot } = useGetSdarotQuery();
-
+  
   return (
     <div className="h-full w-full">
       <Navbar />
