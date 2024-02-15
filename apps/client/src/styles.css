@@ -3,8 +3,13 @@
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body,
-#root {
-  @apply h-full w-full;
+@layer base {
+  html,
+  body,
+  #root {
+    @apply h-full w-full;
+  }
+
+  * {
+  }
 }
