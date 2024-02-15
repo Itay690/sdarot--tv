@@ -10,10 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Video {
+model Shows {
   id String @id @default(uuid()) @db.Uuid
   name String
-  isMovie Boolean
 
   episodes Episode[]
 }
@@ -23,8 +22,8 @@ model Episode {
   count Int?
   season Int?
 
-  video Video @relation(fields: [videoId],references: [id])
-  videoId String @db.Uuid
+  shows  Shows @relation(fields: [showId],references: [id])
+  showId String @db.Uuid
 
 }
 
