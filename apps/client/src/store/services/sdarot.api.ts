@@ -5,15 +5,15 @@ export const sdarotApi = serverApi.injectEndpoints({
     getSdarot: build.query<{ name: string; seasons: number }[], void>({
       query: () => 'sdarot',
     }),
-    upload: build.mutation<void, { file: File }>({
+    upload: build.mutation<void, FormData>({
       query: (body) => ({
         url: 'sdarot/upload',
         body,
         method: 'POST',
-        credentials: 'include',
       }),
     }),
   }),
+  overrideExisting: true,
 });
 
 export const { useGetSdarotQuery, useUploadMutation } = sdarotApi;
