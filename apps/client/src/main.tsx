@@ -5,7 +5,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Index } from './routes';
 import { Root } from './routes/root';
 import { Upload } from './routes/upload';
+import { Watch } from './routes/watch';
 import { store } from './store/store';
+
+import 'node_modules/video-react/dist/video-react.css';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Index /> },
       { path: 'upload', element: <Upload /> },
+      { path: 'watch/:id', element: <Watch /> },
     ],
   },
 ]);

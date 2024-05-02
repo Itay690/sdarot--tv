@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/card';
 import { useGetSdarotQuery } from '../store/services/sdarot.api';
 
 export const Index: React.FC = () => {
+  const navigate = useNavigate();
   const { data: sdarot } = useGetSdarotQuery();
 
   return (
@@ -10,7 +12,12 @@ export const Index: React.FC = () => {
         <Card
           key={sidra.name}
           className="cursor-pointer hover:bg-slate-100"
-        >{`${sidra.name} ${sidra.seasons}`}</Card>
+          onClick={() => {
+            navigate(`watch/${sidra.id}`);
+          }}
+        >
+          {sidra.name}
+        </Card>
       ))}
     </div>
   );
