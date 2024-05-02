@@ -22,7 +22,7 @@ model Episode {
   count Int?
   season Int?
 
-  shows  Shows @relation(fields: [showId],references: [id])
+  show  Shows @relation(fields: [showId],references: [id])
   showId String @db.Uuid
 
 }
