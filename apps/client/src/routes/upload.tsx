@@ -1,13 +1,37 @@
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { useState } from 'react';
-import { useUploadMutation } from '../store/services/sdarot.api';
+import {
+  useGetSdarotQuery,
+  useUploadMutation,
+} from '../store/services/sdarot.api';
 
 export const Upload: React.FC = () => {
   const [upload] = useUploadMutation();
-  const [file, setFile] = useState<File | null>();
+  const { data: sdarot } = useGetSdarotQuery();
+
+  const [file, setFile] = useState<File>();
+  const [showId, setShowId] = useState<string>();
 
   return (
-    <div className="flex h-full w-full">
-      <div>
+    <div className="flex h-full w-full flex-col items-center justify-start">
+      <div className="flex h-fit w-fit flex-col items-center justify-start">
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={sdarot?.map((sidra) => sidra.name) ?? []}
+          renderInput={(params) => <TextField {...params} label="Show" />}
+          className="w-full"
+          onChange={(e) => {
+            const element = e.target as HTMLElement;
+
+            const sidra = sdarot?.find(
+              (sidra) => sidra.name === element.innerText,
+            );
+
+            setShowId(sidra?.id);
+          }}
+        />
         <label htmlFor="file">Upload Here</label>
         <input
           type="file"
@@ -22,7 +46,7 @@ export const Upload: React.FC = () => {
         />
 
         <button
-          className="border px-4 py-2"
+          className="h-fit w-fit border px-4 py-2"
           onClick={async () => {
             if (!file) {
               throw new Error('No File Selected');
