@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .navbar .user-info .username {
+            margin-right: 10px;
+        }
+
+        .navbar button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover {
+            background-color: #45a049;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .video-heading {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        a {
+            color: inherit;
+            width: 100%;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><a href="/">Logo</a></div>
+        <div class="user-info">
+            <span class="username">Hello, {{current_user.username}}</span>  
+            <button><a href="/upload">Upload</a></button>
+        </div>
+    </div>
+    <h1 class="video-heading">{{video.filename}}</h1>
+    <div class="video-container"></div>
+        <video controls>
+            <source src="{{ video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+</html>
