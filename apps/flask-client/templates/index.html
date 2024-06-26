@@ -1,168 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
+  <head>
     <title>Index Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-        }
+      body {
+        font-family: 'Play', sans-serif;
+        font-weight: 650;
+        font-style: normal;
+        background-color: #f2f2f2;
+        margin: 0;
+      }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #fff;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-        .navbar .logo {
-            font-size: 24px;
-            color: #4CAF50;
-        }
+      .navbar .logo {
+        font-size: 24px;
+        color: #ac51d2;
+      }
 
-        .navbar .user-info {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            color: #333;
-            position: relative;
-            /* Added for dropdown */
-        }
+      .navbar .user-info {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: #333;
+        position: relative;
+        /* Added for dropdown */
+      }
 
-        .navbar .user-info .username {
-            margin-right: 10px;
-        }
+      .navbar .user-info .username {
+        margin-right: 850px;
+      }
 
-        .navbar button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      .navbar button {
+        padding: 10px 20px;
+        background-color: #ac51d2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+        font-family: 'Play', sans-serif;
+        font-weight: 650;
+        font-style: normal;
+      }
 
-        .navbar button:hover {
-            background-color: #45a049;
-        }
+      .navbar button:hover {
+        background-color: #bb60df;
+      }
 
-        .search-bar {
-            width: 90%;
-            padding: 10px;
-            margin: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+      .search-bar {
+        width: 90%;
+        padding: 10px;
+        margin: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-        .main-view {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+      .main-view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .video-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            padding: 20px;
-            gap: 5px;
-        }
+      .video-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 20px;
+        gap: 5px;
+      }
 
-        .video {
-            width: calc(30% - 20px);
-            margin-bottom: 30px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
+      .video {
+        width: calc(30% - 20px);
+        margin-bottom: 30px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+      }
 
-        .video h3 {
-            margin-bottom: 10px;
-            text-align: center;
-        }
+      .video h3 {
+        margin-bottom: 10px;
+        text-align: center;
+      }
 
-        a {
-            color: inherit;
-            width: 100%;
-            text-decoration: none;
-        }
+      a {
+        color: inherit;
+        width: 100%;
+        text-decoration: none;
+      }
 
-        /* Dropdown Styles */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            top: 100%;
-            /* Make dropdown appear below the user-info */
-        }
+      /* Dropdown Styles */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        top: 100%;
+        /* Make dropdown appear below the user-info */
+      }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
-        }
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
 
-        .user-info:hover .dropdown-content {
-            display: block;
-        }
+      .user-info:hover .dropdown-content {
+        display: block;
+      }
     </style>
-</head>
+  </head>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
 
-<body>
+  <body>
     <div class="navbar">
-        <div class="logo"><a href="/">Logo</a></div>
-        <div class="user-info">
-            <span class="username">Hello, {{current_user.username}}</span>
-            <button class="btn"><a href="/logout">Sign Out</a> <i class="fa fa-sign-out"></i></button>
-            <button><a href="/upload">Upload</a></button>
-        </div>
+      <div class="logo"><a href="/">SdarotTV</a></div>
+      <div class="user-info">
+        <span class="username">Hello, {{current_user.username}}</span>
+        <button class="btn">
+          <a href="/logout">Sign Out</a> <i class="fa fa-sign-out"></i>
+        </button>
+        <button><a href="/upload">Upload</a></button>
+      </div>
     </div>
     <section class="main-view">
-        <input class="search-bar" id="searchBar" type="text" placeholder="Search for videos...">
-        <div class="video-list" id="videoList">
-            {% for video in videos %}
-            <a class="video" href="\video\{{video.fileId}}">
-                <h3>{{video.filename}}</h3>
-                <p>Uploaded {{video.uploadDate}}</p>
-            </a>
-            {%endfor%}
-        </div>
+      <input
+        class="search-bar"
+        id="searchBar"
+        type="text"
+        placeholder="Search for videos..."
+      />
+      <div class="video-list" id="videoList">
+        {% for video in videos %}
+        <a class="video" href="\video\{{video.fileId}}">
+          <h3>{{video.filename}}</h3>
+          <p>Uploaded {{video.uploadDate}}</p>
+        </a>
+        {%endfor%}
+      </div>
     </section>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchInput = document.getElementById("searchBar");
-            searchInput.addEventListener('input', function () {
-                let searchQuery = this.value.toLowerCase();
+      document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchBar');
+        searchInput.addEventListener('input', function () {
+          let searchQuery = this.value.toLowerCase();
 
-                let videos = document.getElementById("videoList").querySelectorAll("h3");
+          let videos = document
+            .getElementById('videoList')
+            .querySelectorAll('h3');
 
-                videos.forEach(function (video) {
-                    let videoTitle = video.innerText;
-                    if (videoTitle.toLowerCase().includes(searchQuery)) {
-                        video.parentElement.style.display = "";
-                    } else {
-                        video.parentElement.style.display = "none";
-                    }
-                });
-            });
+          videos.forEach(function (video) {
+            let videoTitle = video.innerText;
+            if (videoTitle.toLowerCase().includes(searchQuery)) {
+              video.parentElement.style.display = '';
+            } else {
+              video.parentElement.style.display = 'none';
+            }
+          });
         });
+      });
     </script>
-</body>
-
+  </body>
 </html>
