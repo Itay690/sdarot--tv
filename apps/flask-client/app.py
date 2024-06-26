@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_login import (
     LoginManager,
     login_user,
@@ -73,18 +73,18 @@ def login():
 
     if user and user.check_password(password):
         login_user(user)
-        return redirect("/")
+        return redirect(url_for("index"))
     else:
         flash("Invalid username or password", "error")
 
-    return redirect("/login")
+    return redirect(url_for("login_form"))
 
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(("/login"))
+    return redirect(url_for("login_form"))
 
 
 @app.route("/register", methods=["GET"])
@@ -101,7 +101,7 @@ def register():
 
     if user:
         flash("Username already exists", "error")
-        return redirect("/register")
+        return redirect(url_for("register_form"))
 
     new_user = User(username=username)
     new_user.set_password(password)
@@ -109,7 +109,7 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect("/login")
+    return redirect(url_for("login_form"))
 
 
 @app.route("/upload", methods=["GET"])
@@ -125,12 +125,12 @@ def upload():
 
     if file.filename == "":
         flash("No file has been chosen.", "error")
-        return redirect("/upload")
+        return redirect(url_for("upload_form"))
 
     allowed_extensions = ["mp4"]
     if not file.filename.endswith(tuple(allowed_extensions)):
         flash("Invalid file type. Only .mp4 files are allowed.", "error")
-        return redirect("/upload")
+        return redirect(url_for("upload_form"))
 
     try:
         upload_video(file)
@@ -139,7 +139,7 @@ def upload():
     except:
         flash("Error uploading file.", "error")
 
-    return redirect("/upload")
+    return redirect(url_for("upload_form"))
 
 
 @app.route("/video/<video_id>", methods=["GET"])

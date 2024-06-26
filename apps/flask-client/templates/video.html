@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Watch Video</title>
     <style>
@@ -62,28 +63,33 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         a {
             color: inherit;
             width: 100%;
             text-decoration: none;
         }
-
     </style>
 </head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <body>
     <div class="navbar">
         <div class="logo"><a href="/">Logo</a></div>
         <div class="user-info">
-            <span class="username">Hello, {{current_user.username}}</span>  
+            <span class="username">Hello, {{current_user.username}}</span>
+            <button class="btn"><a href="/logout">Sign Out</a> <i class="fa fa-sign-out"></i></button>
             <button><a href="/upload">Upload</a></button>
         </div>
     </div>
     <h1 class="video-heading">{{video.filename}}</h1>
     <div class="video-container"></div>
-        <video controls>
-            <source src="{{ video_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <video controls>
+        <source src="{{ video_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     </div>
 </body>
+
 </html>

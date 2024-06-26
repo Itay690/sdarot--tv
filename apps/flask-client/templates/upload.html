@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Upload Page</title>
     <style>
@@ -69,14 +70,15 @@
             margin-bottom: 5px;
         }
 
-        
+
         .form-group button {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .form-group input{
+
+        .form-group input {
             width: 95%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -111,6 +113,7 @@
             background-color: #f44336;
             color: #fff;
         }
+
         a {
             color: inherit;
             width: 100%;
@@ -118,11 +121,16 @@
         }
     </style>
 </head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <body>
     <div class="navbar">
         <div class="logo"><a href="/">Logo</a></div>
         <div class="user-info">
             <span class="username">Hello, {{current_user.username}}</span>
+            <button class="btn"><a href="/logout">Sign Out</a> <i class="fa fa-sign-out"></i></button>
             <button><a href="/upload">Upload</a></button>
         </div>
     </div>
@@ -139,14 +147,15 @@
         </form>
         <!-- Flash message section -->
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash-message flash-{{category}}">
-                        {{ message }}
-                    </div>
-                {%endfor%}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message flash-{{category}}">
+            {{ message }}
+        </div>
+        {%endfor%}
+        {% endif %}
         {% endwith %}
     </div>
 </body>
+
 </html>

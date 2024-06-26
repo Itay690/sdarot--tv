@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Index Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
+            margin: 0;
         }
 
         .navbar {
@@ -27,7 +29,8 @@
             align-items: center;
             font-size: 16px;
             color: #333;
-            position: relative; /* Added for dropdown */
+            position: relative;
+            /* Added for dropdown */
         }
 
         .navbar .user-info .username {
@@ -47,32 +50,31 @@
             background-color: #45a049;
         }
 
-        .search-container {
-            max-width: 800px;
-            margin: 20px auto;
+        .search-bar {
+            width: 90%;
             padding: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-container input[type="text"] {
-            width: 97%;
-            padding: 10px;
-            margin-bottom: 20px;
+            margin: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+
+        .main-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-evenly;
             padding: 20px;
+            gap: 5px;
         }
 
         .video {
-            width: calc(33.333% - 20px);
+            width: calc(30% - 20px);
             margin-bottom: 30px;
             background-color: #fff;
             border-radius: 5px;
@@ -84,10 +86,11 @@
             margin-bottom: 10px;
             text-align: center;
         }
+
         a {
-        color: inherit;
-        width: 100%;
-        text-decoration: none;
+            color: inherit;
+            width: 100%;
+            text-decoration: none;
         }
 
         /* Dropdown Styles */
@@ -96,9 +99,10 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
-            top: 100%; /* Make dropdown appear below the user-info */
+            top: 100%;
+            /* Make dropdown appear below the user-info */
         }
 
         .dropdown-content a {
@@ -108,36 +112,57 @@
             display: block;
         }
 
-        .dropdown-content a:hover {background-color: #f1f1f1}
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
 
         .user-info:hover .dropdown-content {
             display: block;
         }
     </style>
 </head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <body>
     <div class="navbar">
         <div class="logo"><a href="/">Logo</a></div>
         <div class="user-info">
             <span class="username">Hello, {{current_user.username}}</span>
-            <div class="dropdown-content">
-                <a href="/logout">Logout</a>
-            </div>
+            <button class="btn"><a href="/logout">Sign Out</a> <i class="fa fa-sign-out"></i></button>
             <button><a href="/upload">Upload</a></button>
         </div>
     </div>
-    <div class="search-container">
-        <input type="text" placeholder="Search for videos...">
-    </div>
-    <div class="video-list">
-        {% for video in videos %}
-            <a href="\video\{{video.fileId}}">
-                <div class="video">
-                    <h3>{{video.filename}}</h3>
-                    <p>Uploaded {{video.uploadDate}}</p>
-                </div>
+    <section class="main-view">
+        <input class="search-bar" id="searchBar" type="text" placeholder="Search for videos...">
+        <div class="video-list" id="videoList">
+            {% for video in videos %}
+            <a class="video" href="\video\{{video.fileId}}">
+                <h3>{{video.filename}}</h3>
+                <p>Uploaded {{video.uploadDate}}</p>
             </a>
-        {%endfor%}
-    </div>
+            {%endfor%}
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById("searchBar");
+            searchInput.addEventListener('input', function () {
+                let searchQuery = this.value.toLowerCase();
+
+                let videos = document.getElementById("videoList").querySelectorAll("h3");
+
+                videos.forEach(function (video) {
+                    let videoTitle = video.innerText;
+                    if (videoTitle.toLowerCase().includes(searchQuery)) {
+                        video.parentElement.style.display = "";
+                    } else {
+                        video.parentElement.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
